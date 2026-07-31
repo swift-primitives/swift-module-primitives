@@ -2,8 +2,15 @@ import Testing
 
 @testable import Module_Primitives
 
-@Suite
-struct ModuleNameTests {
+extension Module.Name {
+    @Suite struct Tests {
+        @Suite struct Unit {}
+        @Suite struct `Edge Case` {}
+        @Suite struct Integration {}
+    }
+}
+
+extension Module.Name.Tests.Unit {
     @Test
     func `direct construction preserves value`() {
         let name = Module.Name("Buffer_Primitives")
@@ -28,7 +35,9 @@ struct ModuleNameTests {
         let b = Module.Name(product: "Foo")
         #expect(a == b)
     }
+}
 
+extension Module.Name.Tests.`Edge Case` {
     @Test
     func `product with multiple spaces`() {
         let name = Module.Name(product: "Graph Reachable Primitives")
